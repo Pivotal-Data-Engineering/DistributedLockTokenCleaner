@@ -1,6 +1,5 @@
-package com.citigroup.ccp.sc.function;
+package io.pivotal.function;
 
-import com.citigroup.ccp.cache.FunctionBase;
 import com.gemstone.gemfire.cache.Region;
 import com.gemstone.gemfire.cache.execute.FunctionContext;
 import com.gemstone.gemfire.cache.execute.FunctionException;

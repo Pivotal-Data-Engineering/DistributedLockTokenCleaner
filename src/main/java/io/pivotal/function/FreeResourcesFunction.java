@@ -1,8 +1,7 @@
-package com.citigroup.ccp.sc.function;
+package io.pivotal.function;
 
 import java.util.Map;
 
-import com.citigroup.ccp.cache.FunctionBase;
 import com.gemstone.gemfire.cache.Cache;
 import com.gemstone.gemfire.cache.CacheFactory;
 import com.gemstone.gemfire.cache.Region;
