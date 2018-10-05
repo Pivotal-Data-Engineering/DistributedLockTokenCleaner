@@ -20,7 +20,7 @@ To run:
        gfsh> deploy --jar=target/distributed-lock-token-cleaner-0.0.1.jar
 
 - execute the function on all partitions of the region where you want to clear the locks, as follows:
-       gfsh> execute function --id=CreateDLocksFunction --region=SharedContext
+       gfsh> execute function --id=FreeResourcesFunction --region=SharedContext
        
 Result:
 
