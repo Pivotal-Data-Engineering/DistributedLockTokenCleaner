@@ -1,0 +1,37 @@
+The Project frees distributed lock tokens for Distributed Lock Services ending with the name "LockService"
+
+This is a specialty utility designed for freeing unused distributed lock tokens.
+The DL tokens get created in the Distributed Lock Service and remain unfreed by design.
+The Distributed Lock Service is designed to be used only by global regions. 
+If used by regions other than global regions, the DL tokens remain and the keys they reference remain as a memory leak.
+
+This project frees up such memory.
+
+To run:
+
+- mvn package the jar file, which is named distributed-lock-token-cleaner-0.0.1.jar
+- Pay attention to the location of the jar file since you will need this location for gfsh
+- Launch gfsh and connect
+
+- undeploy any previous versions, as follows:
+       gfsh> undeploy --jar=distributed-lock-token-cleaner-0.0.1.jar
+
+- deploy the function by referencing the location of the jar file, as follows:
+       gfsh> deploy --jar=target/distributed-lock-token-cleaner-0.0.1.jar
+
+- execute the function on all partitions of the region where you want to clear the locks, as follows:
+       gfsh> execute function --id=CreateDLocksFunction --region=SharedContext
+       
+Result:
+
+The results will print out the result for each member in the region. 
+The member result prints three items separated with a :
+    memberId : service name : number of tokens deleted
+
+Thus, 192.168.0.4(server2:61605)<v2>:32621:/AccountsLockService:10000 is that 
+member 192.168.0.4(server2:61605)<v2>:32621 deleted 10000 tokens out of service /AccountsLockService
+
+Each result is separated by a |. Thus, two members sharing region Accounts will look like this:
+
+192.168.0.4(server2:61605)<v2>:32621 | 192.168.0.4(server2:61605)<v2>:32621:/AccountsLockService:10000 | 
+192.168.0.4(server1:61601)<v1>:22079:/AccountsLockService:10000 | 

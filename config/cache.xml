@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE cache PUBLIC
+    "-//GemStone Systems, Inc.//GemFire Declarative Caching 8.0//EN"
+    "http://www.gemstone.com/dtd/cache8_0.dtd">
+
+<cache>
+
+	<pdx>
+		<pdx-serializer>
+			<class-name>com.gemstone.gemfire.pdx.ReflectionBasedAutoSerializer</class-name>
+			<parameter name="classes">
+				<string>.*</string>
+			</parameter>
+		</pdx-serializer>
+	</pdx>
+
+	<!-- the gateway-sender-id references the above gateway sender for WAN replication -->
+	<region name="test">
+		<region-attributes data-policy="partition"">
+		</region-attributes>
+	</region>
+</cache>
+
